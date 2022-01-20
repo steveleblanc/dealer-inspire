@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,15 +10,16 @@
     <title>Dealer Inspire Code Challenge</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="{{ asset('css/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('fonts/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
     <!-- Theme CSS -->
-    <link href="css/grayscale.min.css" rel="stylesheet">
+    <link href="{{ asset('css/grayscale.min.css') }}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,7 +31,6 @@
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
@@ -116,7 +114,26 @@
                 <h2>Contact Guy Smiley</h2>
                 <p>Remember Guy Smiley?  Yeah, he wants to hear from you.</p>
                 <p class="bg-primary">
-                    [[ This is where you'd put your contact form.  Get it done! ]]
+                    <!-- [[ This is where you'd put your contact form.  Get it done! ]] -->
+        <form method="post" action="">
+          @csrf
+          <div class="row">
+            <div class="col-md-12">
+              <input type="text" class="form-group form-control" placeholder="Full Name" name="full_name" aria-label="First name" maxlength="50">
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-group form-control" placeholder="Email" name="email" aria-label="Email" maxlength="50">
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-group form-control" placeholder="Phone" name="phone" aria-label="Phone" maxlength="50">
+            </div>
+            <div class="col-md-12">
+              <textarea class="form-group form-control" maxlength="1000" name="message" aria-label="Message">I'm interested in your</textarea>
+            </div>
+            <button type="submit" class="btn btn-default btn-lg">Send message</button>
+            
+          </div>
+        </form>
                 </p>
             </div>
         </div>
@@ -133,10 +150,10 @@
     </footer>
 
     <!-- jQuery -->
-    <script src="vendor/jquery/jquery.js"></script>
+    <script src="js/jquery/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>

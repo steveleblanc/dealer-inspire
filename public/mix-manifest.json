@@ -1,0 +1,15 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/bootstrap/bootstrap.css": "/css/bootstrap/bootstrap.css",
+    "/css/bootstrap/bootstrap.min.css": "/css/bootstrap/bootstrap.min.css",
+    "/fonts/glyphicons-halflings-regular.eot": "/fonts/glyphicons-halflings-regular.eot",
+    "/fonts/glyphicons-halflings-regular.svg": "/fonts/glyphicons-halflings-regular.svg",
+    "/fonts/glyphicons-halflings-regular.ttf": "/fonts/glyphicons-halflings-regular.ttf",
+    "/fonts/glyphicons-halflings-regular.woff": "/fonts/glyphicons-halflings-regular.woff",
+    "/fonts/glyphicons-halflings-regular.woff2": "/fonts/glyphicons-halflings-regular.woff2",
+    "/js/bootstrap/bootstrap.js": "/js/bootstrap/bootstrap.js",
+    "/js/bootstrap/bootstrap.min.js": "/js/bootstrap/bootstrap.min.js",
+    "/js/jquery/jquery.js": "/js/jquery/jquery.js",
+    "/js/jquery/jquery.min.js": "/js/jquery/jquery.min.js"
+}
