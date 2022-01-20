@@ -130,8 +130,7 @@
             <div class="col-md-12">
               <textarea class="form-group form-control" maxlength="1000" name="message" aria-label="Message">I'm interested in your</textarea>
             </div>
-            <button type="submit" class="btn btn-default btn-lg">Send message</button>
-            
+            <button type="submit" class="btn btn-default btn-lg">Send message</button>            
           </div>
         </form>
                 </p>
