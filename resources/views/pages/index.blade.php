@@ -65,17 +65,18 @@
         </div>
         <!-- /.container -->
     </nav>
-<!-- Successful form post message -->
-        @if(Session::has('success'))
-            <div class="alert alert-success">
-                {{Session::get('success')}}
-            </div>
-        @endif
-    <!-- Intro Header -->
+
     <header class="intro">
         <div class="intro-body">
             <div class="container">
                 <div class="row">
+            <!-- Successful form post message -->
+            @if(Session::has('success'))
+                <div class="alert alert-success">
+                    {{Session::get('success')}}
+                </div>
+            @endif
+    <!-- Intro Header -->
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">Challenge</h1>
                         <p class="intro-text">Code Something Awesome.
@@ -123,7 +124,7 @@
 
          
 
-        <form method="post" action="{{ route('postcontact') }}">
+        <form method="post" action="postcontact">
           @csrf
           <div class="row">
             <div class="col-md-12 form-group">
@@ -157,11 +158,11 @@
                   <input type="checkbox" name="faxonly" id="faxonly" />
             </div>
             <div class="col-md-12 form-group">
-              <textarea class="form-control" maxlength="1000" name="message" aria-label="Message">I'm interested in your</textarea>
+              <textarea class="form-control" maxlength="1000" name="comments" aria-label="Comments">I'm interested in your</textarea>
               <!-- Error -->
-              @if ($errors->has('message'))
+              @if ($errors->has('comments'))
             <div class="error">
-                {{ $errors->first('message') }}
+                {{ $errors->first('comments') }}
             </div>
             @endif
             </div>

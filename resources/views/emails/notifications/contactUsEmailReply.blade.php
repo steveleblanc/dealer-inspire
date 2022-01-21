@@ -310,12 +310,12 @@
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p>Hi {{ $full_name }}. Thank you for contacting Guy Smiley. We have received your message and will contact you soon.</p>
-                        <p><b>Users Name:</b> {{ $name }}</p>
+                        <h3>Hi {{ $full_name }}.<h3>
+                        <p>Thank you for contacting Guy Smiley. We have received your message and will contact you soon.</p>
                         <p><b>Full Name:</b> {{ $full_name }}</p>
                         <p><b>Email:</b> {{ $email }}</p>
                         <p><b>Phone:</b> {{ $phone }}</p>
-                        <p><b>Message:</b> {{ $message }}</p>
+                        <p><b>Comments:</b> {{ $comments }}</p>
                       </td>
                     </tr>
                   </table>

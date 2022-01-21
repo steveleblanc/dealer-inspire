@@ -41,15 +41,15 @@ class ContactUsFormController extends Controller
             'full_name' => 'required',
             'email' => 'required|email',
             'phone' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'message' => 'required'
+            'comments' => 'required'
          ]);
 
         //  Store data in database
         $contact = new ContactUsForm;
-        $contact->full_name = $request->get('full_name');
-        $contact->full_name = $request->get('email');
-        $contact->full_name = $request->get('phone');
-        $contact->full_name = $request->get('message');
+        $contact->full_name = $request->full_name;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone;
+        $contact->comments = $request->comments;
 
         //Let's add a honeypot to reduce the amount of spam received from the form. We can trick the spam to think the form was submitted by adding the following.
 
@@ -72,10 +72,10 @@ class ContactUsFormController extends Controller
                 ->withSuccess('Your form has been submitted');
           } 
 
-          if(filter_var($request->Email, FILTER_VALIDATE_EMAIL) == false)
+          if(filter_var($request->email, FILTER_VALIDATE_EMAIL) == false)
             {
             return redirect()->back()
-                ->withSuccess('Thank you! Your form has been submitted');
+                ->withSuccess('Your form has been submitted');
           } 
 
         else
@@ -83,19 +83,18 @@ class ContactUsFormController extends Controller
         $contact->save();
 
         // Now let's collect the data to send in an email.
-        $contact = $contact;
         $contact = array(
-        'full_name' => $request->get('full_name'),
-        'email' => $request->get('email'),
-        'phone' => $request->get('phone'),
-        'message' => $request->get('message'),
+        'full_name' => $request->full_name,
+        'email' => $request->email,
+        'phone' => $request->phone,
+        'comments' => $request->comments,
             'from' => 'guy-smiley@example.com',
             'from_name' => "Guy Smiley",
             'bcc' => array('guy-smiley@example.com')
             );
 
         //We can now send the results to the visitor's email and a copy to Guy Smiley...
-    \Mail::send( 'emails.contactUsEmailReply', $contact, function( $message ) use ($contact)
+    \Mail::send( 'emails.notifications.contactUsEmailReply', $contact, function( $message ) use ($contact)
     {
         $message->to( $contact['email'] )->bcc( $contact['bcc'] )->from( $contact['from'], $contact['from_name'] )->subject( $contact['full_name'] . ' ' . 'Thank You For Contacting Guy Smiley' )->getSwiftMessage()->getHeaders()->addTextHeader('Content-Type', 'text/xml');
     });
@@ -109,6 +108,22 @@ class ContactUsFormController extends Controller
     return $this->formResponse(); 
 
     }
+
+
+    /** 
+    * The response to always send back to the frontend 
+             * 
+             * @return \Illuminate\Http\Response 
+             */ 
+            protected function formResponse() 
+            { 
+                //Get the contacts name to add to the thank you message
+                $contact = ContactUsForm::all()->last();
+
+                return redirect()->back()->withSuccess('Thank you ' . $contact->full_name . '. Your web form has been submitted');
+}
+
+
 
     /**
      * Display the specified resource.
