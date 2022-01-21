@@ -115,20 +115,55 @@
                 <p>Remember Guy Smiley?  Yeah, he wants to hear from you.</p>
                 <p class="bg-primary">
                     <!-- [[ This is where you'd put your contact form.  Get it done! ]] -->
-        <form method="post" action="">
+
+         <!-- Successful form post message -->
+        @if(Session::has('success'))
+            <div class="alert alert-success">
+                {{Session::get('success')}}
+            </div>
+        @endif
+
+        <form method="post" action="{{ route('postcontact') }}">
           @csrf
           <div class="row">
-            <div class="col-md-12">
-              <input type="text" class="form-group form-control" placeholder="Full Name" name="full_name" aria-label="First name" maxlength="50">
+            <div class="col-md-12 form-group">
+              <input type="text" class="form-control {{ $errors->has('full_name') ? 'error' : '' }}" placeholder="Full Name" name="full_name" aria-label="Full name" maxlength="50">
+              <!-- Error -->
+                @if ($errors->has('full_name'))
+                <div class="error">
+                    {{ $errors->first('full_name') }}
+                </div>
+                @endif
             </div>
-            <div class="col-md-6">
-              <input type="text" class="form-group form-control" placeholder="Email" name="email" aria-label="Email" maxlength="50">
+            <div class="col-md-6 form-group">
+              <input type="text" class="form-control {{ $errors->has('email') ? 'error' : '' }}" placeholder="Email" name="email" aria-label="Email" maxlength="50">
+              <!-- Error -->
+                @if ($errors->has('email'))
+                <div class="error">
+                    {{ $errors->first('email') }}
+                </div>
+                @endif
             </div>
-            <div class="col-md-6">
-              <input type="text" class="form-group form-control" placeholder="Phone" name="phone" aria-label="Phone" maxlength="50">
+            <div class="col-md-6 form-group">
+              <input type="text" class="form-control {{ $errors->has('phone') ? 'error' : '' }}" placeholder="Phone" name="phone" aria-label="Phone" maxlength="50">
+              <!-- Error -->
+                @if ($errors->has('phone'))
+                <div class="error">
+                    {{ $errors->first('phone') }}
+                </div>
+                @endif
             </div>
-            <div class="col-md-12">
-              <textarea class="form-group form-control" maxlength="1000" name="message" aria-label="Message">I'm interested in your</textarea>
+            <div class="form-group row" style="display: none;">
+                  <input type="checkbox" name="faxonly" id="faxonly" />
+            </div>
+            <div class="col-md-12 form-group">
+              <textarea class="form-control" maxlength="1000" name="message" aria-label="Message">I'm interested in your</textarea>
+              <!-- Error -->
+              @if ($errors->has('message'))
+            <div class="error">
+                {{ $errors->first('message') }}
+            </div>
+            @endif
             </div>
             <button type="submit" class="btn btn-default btn-lg">Send message</button>            
           </div>
