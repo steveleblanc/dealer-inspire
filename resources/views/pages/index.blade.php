@@ -65,7 +65,12 @@
         </div>
         <!-- /.container -->
     </nav>
-
+<!-- Successful form post message -->
+        @if(Session::has('success'))
+            <div class="alert alert-success">
+                {{Session::get('success')}}
+            </div>
+        @endif
     <!-- Intro Header -->
     <header class="intro">
         <div class="intro-body">
@@ -116,12 +121,7 @@
                 <p class="bg-primary">
                     <!-- [[ This is where you'd put your contact form.  Get it done! ]] -->
 
-         <!-- Successful form post message -->
-        @if(Session::has('success'))
-            <div class="alert alert-success">
-                {{Session::get('success')}}
-            </div>
-        @endif
+         
 
         <form method="post" action="{{ route('postcontact') }}">
           @csrf
