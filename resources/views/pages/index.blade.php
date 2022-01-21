@@ -158,7 +158,7 @@
                   <input type="checkbox" name="faxonly" id="faxonly" />
             </div>
             <div class="col-md-12 form-group">
-              <textarea class="form-control" maxlength="1000" name="comments" aria-label="Comments">I'm interested in your</textarea>
+              <textarea class="form-control" maxlength="1000" name="comments" aria-label="Comments">Hi Guy Smiley. </textarea>
               <!-- Error -->
               @if ($errors->has('comments'))
             <div class="error">
