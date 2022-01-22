@@ -9,5 +9,5 @@ class ContactUsForm extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['full_name', 'email', 'phone_number', 'message'];
+    protected $fillable = ['full_name', 'email', 'phone_number', 'comments'];
 }

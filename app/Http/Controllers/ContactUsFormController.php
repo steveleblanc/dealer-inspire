@@ -7,25 +7,6 @@ use Illuminate\Http\Request;
 
 class ContactUsFormController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //        
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -79,7 +60,7 @@ class ContactUsFormController extends Controller
           } 
 
         else
-        //else form results didn't land in the honeypot let's save the form data to the db
+        //else the form results didn't land in the honeypot. Let's save the form data to the db
         $contact->save();
 
         // Now let's collect the data to send in an email.
@@ -111,7 +92,7 @@ class ContactUsFormController extends Controller
 
 
     /** 
-    * The response to always send back to the frontend 
+    * The response to send back to the frontend when no spam detected
              * 
              * @return \Illuminate\Http\Response 
              */ 
@@ -120,53 +101,11 @@ class ContactUsFormController extends Controller
                 //Get the contacts name to add to the thank you message
                 $contact = ContactUsForm::all()->last();
 
-                return redirect()->back()->withSuccess('Thank you ' . $contact->full_name . '. Your web form has been submitted');
-}
+                // return redirect()->back()->withSuccess('Thank you ' . $contact->full_name . '. Your web form has been submitted');
 
+                return redirect()->to(url()->previous() . '#gotoform')->withSuccess('Thank you ' . $contact->full_name . '. Your web form has been submitted');
 
+                
+            }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ContactUsForm  $contactUsForm
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ContactUsForm $contactUsForm)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ContactUsForm  $contactUsForm
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ContactUsForm $contactUsForm)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ContactUsForm  $contactUsForm
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ContactUsForm $contactUsForm)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ContactUsForm  $contactUsForm
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ContactUsForm $contactUsForm)
-    {
-        //
-    }
 }

@@ -114,6 +114,7 @@
     </section>
 
     <!-- Contact Section -->
+    <a name="gotoform"></a>
     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
@@ -121,8 +122,6 @@
                 <p>Remember Guy Smiley?  Yeah, he wants to hear from you.</p>
                 <p class="bg-primary">
                     <!-- [[ This is where you'd put your contact form.  Get it done! ]] -->
-
-         
 
         <form method="post" action="postcontact">
           @csrf
@@ -154,9 +153,11 @@
                 </div>
                 @endif
             </div>
+            <!-- honeypot -->
             <div class="form-group row" style="display: none;">
                   <input type="checkbox" name="faxonly" id="faxonly" />
             </div>
+            <!-- end honeypot -->
             <div class="col-md-12 form-group">
               <textarea class="form-control" maxlength="1000" name="comments" aria-label="Comments">Hi Guy Smiley. </textarea>
               <!-- Error -->
