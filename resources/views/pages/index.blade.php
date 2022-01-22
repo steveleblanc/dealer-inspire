@@ -70,12 +70,29 @@
         <div class="intro-body">
             <div class="container">
                 <div class="row">
-            <!-- Successful form post message -->
-            @if(Session::has('success'))
-                <div class="alert alert-success">
-                    {{Session::get('success')}}
+
+                <!-- Errors -->
+                @if ($errors->has('full_name'))
+                <div class="alert alert-danger">
+                    {{ $errors->first('full_name') }}
                 </div>
-            @endif
+                @endif
+                @if ($errors->has('email'))
+                <div class="alert alert-danger">
+                    {{ $errors->first('email') }}
+                </div>
+                @endif
+                @if ($errors->has('phone'))
+                <div class="alert alert-danger">
+                    {{ $errors->first('phone') }}
+                </div>
+                @endif
+                @if ($errors->has('comments'))
+                <div class="alert alert-danger">
+                    {{ $errors->first('comments') }}
+                </div>
+                @endif
+            
     <!-- Intro Header -->
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">Challenge</h1>
@@ -114,7 +131,7 @@
     </section>
 
     <!-- Contact Section -->
-    <a name="gotoform"></a>
+    <a name="gotoform"></a><!-- Anchored here for Successful form post message -->
     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
@@ -122,33 +139,39 @@
                 <p>Remember Guy Smiley?  Yeah, he wants to hear from you.</p>
                 <p class="bg-primary">
                     <!-- [[ This is where you'd put your contact form.  Get it done! ]] -->
+        <!-- This is the Successful form post message -->
+            @if(Session::has('success'))
+                <div class="alert alert-success">
+                    {{Session::get('success')}}
+                </div>
+            @endif
 
         <form method="post" action="postcontact">
           @csrf
           <div class="row">
             <div class="col-md-12 form-group">
-              <input type="text" class="form-control {{ $errors->has('full_name') ? 'error' : '' }}" placeholder="Full Name" name="full_name" aria-label="Full name" maxlength="50">
+              <input type="text" class="form-control {{ $errors->has('full_name') ? 'error' : '' }}" placeholder="Full Name" name="full_name" aria-label="Full name" maxlength="50" value="{{old('full_name')}}">
               <!-- Error -->
                 @if ($errors->has('full_name'))
-                <div class="error">
+                <div class="alert-danger">
                     {{ $errors->first('full_name') }}
                 </div>
                 @endif
             </div>
             <div class="col-md-6 form-group">
-              <input type="text" class="form-control {{ $errors->has('email') ? 'error' : '' }}" placeholder="Email" name="email" aria-label="Email" maxlength="50">
+              <input type="text" class="form-control {{ $errors->has('email') ? 'error' : '' }}" placeholder="Email" name="email" aria-label="Email" maxlength="50" value="{{old('email')}}">
               <!-- Error -->
                 @if ($errors->has('email'))
-                <div class="error">
+                <div class="alert-danger">
                     {{ $errors->first('email') }}
                 </div>
                 @endif
             </div>
             <div class="col-md-6 form-group">
-              <input type="text" class="form-control {{ $errors->has('phone') ? 'error' : '' }}" placeholder="Phone" name="phone" aria-label="Phone" maxlength="50">
+              <input type="text" class="form-control {{ $errors->has('phone') ? 'error' : '' }}" placeholder="Phone" name="phone" aria-label="Phone" maxlength="50" value="{{old('phone')}}">
               <!-- Error -->
                 @if ($errors->has('phone'))
-                <div class="error">
+                <div class="alert-danger">
                     {{ $errors->first('phone') }}
                 </div>
                 @endif
@@ -159,10 +182,10 @@
             </div>
             <!-- end honeypot -->
             <div class="col-md-12 form-group">
-              <textarea class="form-control" maxlength="1000" name="comments" aria-label="Comments">Hi Guy Smiley. </textarea>
+              <textarea class="form-control" maxlength="1000" name="comments" aria-label="Comments" placeholder="Comments">{{old('comments')}}</textarea>
               <!-- Error -->
               @if ($errors->has('comments'))
-            <div class="error">
+            <div class="alert-danger">
                 {{ $errors->first('comments') }}
             </div>
             @endif

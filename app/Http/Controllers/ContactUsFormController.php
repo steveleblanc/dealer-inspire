@@ -21,9 +21,8 @@ class ContactUsFormController extends Controller
         $this->validate($request, [
             'full_name' => 'required',
             'email' => 'required|email',
-            'phone' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'comments' => 'required'
-         ]);
+         ]);        
 
         //  Store data in database
         $contact = new ContactUsForm;
@@ -104,7 +103,6 @@ class ContactUsFormController extends Controller
                 // return redirect()->back()->withSuccess('Thank you ' . $contact->full_name . '. Your web form has been submitted');
 
                 return redirect()->to(url()->previous() . '#gotoform')->withSuccess('Thank you ' . $contact->full_name . '. Your web form has been submitted');
-
                 
             }
 
