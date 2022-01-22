@@ -90,20 +90,21 @@ class ContactUsFormController extends Controller
     }
 
 
-    /** 
-    * The response to send back to the frontend when no spam detected
-             * 
-             * @return \Illuminate\Http\Response 
-             */ 
-            protected function formResponse() 
-            { 
-                //Get the contacts name to add to the thank you message
-                $contact = ContactUsForm::all()->last();
 
-                // return redirect()->back()->withSuccess('Thank you ' . $contact->full_name . '. Your web form has been submitted');
+     /** 
+     * The response to send back to the frontend when no spam detected
+     * 
+     * @return \Illuminate\Http\Response 
+     */ 
+    protected function formResponse() 
+     { 
+        //Get the contacts name to add to the thank you message
+        $contact = ContactUsForm::all()->last();
 
-                return redirect()->to(url()->previous() . '#gotoform')->withSuccess('Thank you ' . $contact->full_name . '. Your web form has been submitted');
+        // return redirect()->back()->withSuccess('Thank you ' . $contact->full_name . '. Your web form has been submitted');
+
+        return redirect()->to(url()->previous() . '#gotoform')->withSuccess('Thank you ' . $contact->full_name . '. Your web form has been submitted');
                 
-            }
+     }
 
 }
